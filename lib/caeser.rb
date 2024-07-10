@@ -19,4 +19,6 @@ class Caeser
   char.join("")
   end
 end
-# puts caeser_cipher("What a string!",5)
+
+caeser=Caeser.new
+p caeser.caeser_cipher("What a string!",-5)
