@@ -10,12 +10,16 @@ class Caeser # rubocop:disable Style/Documentation
     char = num_array.map do |number|
       # check for if alphabet ASCII, add shift
       if number.between?(65, 90) || number.between?(97, 122)
-        number += shift
+        base = number < 91 ? 65 : 97
+        ((number - base + shift) % 26 + base).chr
+        # number += base
         # check for alphabet ASCII after shift, otherwise subtract 26
-        number -= 26 unless number.between?(65, 90) || number.between?(97, 122)
+        # number -= 26 unless number.between?(65, 90) || number.between?(97, 122)
+      else
+        number.chr
       end
       # change ASCII back to character
-      number.chr
+      # rotation.chr
     end
     # convert to string
     char.join('')
@@ -23,4 +27,4 @@ class Caeser # rubocop:disable Style/Documentation
 end
 
 caeser = Caeser.new
-p caeser.caeser_cipher('What a string!', -5)
+p caeser.caeser_cipher('Hello, World!', 74)

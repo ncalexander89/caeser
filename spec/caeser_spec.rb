@@ -6,13 +6,22 @@ require './lib/caeser'
 
 describe Caeser do
   describe '#caeser_cipher' do
-    it 'turns string into ASCII, adds positive shift, returns new string' do
+    context('when translating a small word')
+    it 'works with small positive shift' do
       caeser = Caeser.new
-      expect(caeser.caeser_cipher('What a string!', 5)).to eql('Bmfy f xywnsl!')
+      expect(caeser.caeser_cipher('Hello, World!', 9)).to eql('Qnuux, Fxaum!')
     end
-    it 'turns string into ASCII, adds negative shift, returns new string' do
+    it 'works with small negative shift' do
       caeser = Caeser.new
-      expect(caeser.caeser_cipher('What a string!', -5)).to eql('RcBo B nomdib!')
+      expect(caeser.caeser_cipher('Hello, World!', -5)).to eql('Czggj, Rjmgy!')
+    end
+    it 'works with large positive shift' do
+      caeser = Caeser.new
+      expect(caeser.caeser_cipher('Hello, World!', 74)).to eql('Dahhk, Sknhz!')
+    end
+    it 'works with large negative shift' do
+      caeser = Caeser.new
+      expect(caeser.caeser_cipher('Hello, World!', -55)).to eql('Ebiil, Tloia!')
     end
   end
 end
